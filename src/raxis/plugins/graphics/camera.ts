@@ -48,7 +48,7 @@ export class Camera2d {
 			textureIndex: tex.current,
 			flipX: sprite.flipX,
 			flipY: sprite.flipY,
-			tint: sprite.tint,
+			tint: sprite.tint.unwrapOr('none'),
 			tintBlend: sprite.tintBlend,
 			blend: sprite.blend,
 			alpha: sprite.alpha,

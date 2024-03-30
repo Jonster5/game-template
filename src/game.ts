@@ -49,7 +49,7 @@ function square(r: Raxis) {
 		SpriteBundle({
 			texture: new Texture(assets.square.unwrap()),
 			sprite: new Sprite({
-				tint: 'Aqua',
+				tint: some('Aqua'),
 				alpha: 1,
 			}),
 			transform: new Transform({ size: new Vec2(10, 10) }),

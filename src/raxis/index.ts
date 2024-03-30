@@ -15,7 +15,6 @@ export { Vec2, type Vec2Like, Tree, type ColorValue } from './structures';
 
 export { type Option, Some, None, some, none, wrap, all } from './option';
 
-import { AssetsPlugin } from './plugins/assets';
 import { GraphicsPlugin } from './plugins/graphics';
 import { InputPlugin } from './plugins/input';
 import { TimePlugin } from './plugins/time';

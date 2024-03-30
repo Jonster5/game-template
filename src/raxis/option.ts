@@ -12,9 +12,9 @@ export interface Option<T extends NonNull> {
 	/** @return The value contained in the option, or throws an error with the specified error message if the option is a None value. */
 	expect(msg: string): T;
 	/** @returns The value contained in the option, or returns the input `other` value if the contained value does not exist. */
-	unwrapOr(other: T): T;
+	unwrapOr<R extends NonNull>(other: R): T | R;
 	/** @returns The value contained in the option, or returns the output if the function `fn` if the contained value does not exist. */
-	unwrapOrElse(fn: () => T): T;
+	unwrapOrElse<R extends NonNull>(fn: () => R): T | R;
 
 	/** Calls the function `fn` with the contained value if it exists, does nothing if the contained value does not exist.
 	 * @returns A reference to `this`.

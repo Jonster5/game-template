@@ -2,7 +2,7 @@ import { A } from 'ts-toolbelt';
 import { GlobalTransform, Transform } from '../transform';
 import { Entity, HasNoParent, Raxis } from '../..';
 import { Handle } from '../assets';
-import { all } from '../../option';
+import { all, none, Option } from '../../option';
 import { ColorValue } from '../../structures';
 
 export type SpriteAnchor =
@@ -19,7 +19,7 @@ export type SpriteAnchor =
 /** @Component */
 export class Sprite {
 	alpha: number = 1;
-	tint: 'none' | ColorValue = 'none';
+	tint: Option<ColorValue> = none;
 	tintBlend: GlobalCompositeOperation = 'overlay';
 	blend: GlobalCompositeOperation = 'source-over';
 	anchor: SpriteAnchor = 'center';
@@ -93,7 +93,7 @@ export const SpriteBundle = (comps: {
 export function updateGlobalVisibility(r: Raxis) {
 	const queue: Entity[] = [];
 
-	for (const [v, gv, e] of r.query([Visibility, GlobalVisibility, Entity], HasNoParent())) {
+	for (const [v, gv, e] of r.query([Visibility, GlobalVisibility, Raxis.Entity], HasNoParent())) {
 		gv.value = v.value === 'hidden' ? 'hidden' : 'visible';
 
 		for (const child of e.children()) {
