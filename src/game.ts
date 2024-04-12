@@ -49,7 +49,7 @@ function square(r: Raxis) {
 		SpriteBundle({
 			texture: new Texture(assets.square.unwrap()),
 			sprite: new Sprite({
-				tint: some('Aqua'),
+				tint: 'Aqua',
 				alpha: 1,
 			}),
 			transform: new Transform({ size: new Vec2(10, 10) }),
@@ -58,8 +58,8 @@ function square(r: Raxis) {
 }
 
 function render(r: Raxis) {
-	const renderer = r.query(CanvasRenderer, Tagged('renderer')).single().unwrap();
-	const camera = r.query(Camera2d, Tagged('camera')).single().unwrap();
+	const renderer = r.query(CanvasRenderer, Tagged('renderer')).expectSingle();
+	const camera = r.query(Camera2d, Tagged('camera')).expectSingle();
 
 	renderer.render(camera);
 }
@@ -77,7 +77,7 @@ function oscillate(r: Raxis) {
 
 function move(r: Raxis) {
 	const { keyboard } = r.global(Input);
-	const jerry = r.query(Transform, Tagged('jerry')).single().unwrap();
+	const jerry = r.query(Transform, Tagged('jerry')).expectSingle();
 	const dt = r.global(Time).delta / 1000;
 
 	if (keyboard.KeyW) {

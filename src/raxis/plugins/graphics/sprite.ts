@@ -1,8 +1,7 @@
 import { A } from 'ts-toolbelt';
 import { GlobalTransform, Transform } from '../transform';
-import { Entity, HasNoParent, Raxis } from '../..';
+import { Entity, HasNoParent, Raxis, Option } from '../..';
 import { Handle } from '../assets';
-import { all, none, Option } from '../../option';
 import { ColorValue } from '../../structures';
 
 export type SpriteAnchor =
@@ -19,7 +18,7 @@ export type SpriteAnchor =
 /** @Component */
 export class Sprite {
 	alpha: number = 1;
-	tint: Option<ColorValue> = none;
+	tint: 'none' | ColorValue = 'none';
 	tintBlend: GlobalCompositeOperation = 'overlay';
 	blend: GlobalCompositeOperation = 'source-over';
 	anchor: SpriteAnchor = 'center';
@@ -105,7 +104,7 @@ export function updateGlobalVisibility(r: Raxis) {
 		const e = queue.shift();
 		if (e === undefined) break;
 
-		all([
+		Option.all([
 			e.access(Visibility),
 			e.access(GlobalVisibility),
 			e
